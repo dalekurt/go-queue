@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  asynqmon:
+    image : hibiken/asynqmon
+    container_name: asynqmon
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+  redis:
+    image: redis:alpine
+    container_name: redis-server
+    ports:
+      - 6379:6379
+    volumes:
+      - $PWD/redis-data:/var/lib/redis
+      - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master
