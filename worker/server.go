@@ -35,22 +35,22 @@ func main() {
 		tasks.HandleNotifyEmailTask, // handler function
 	)
 
-	// Define a task handler for the reminder email task.
-	mux.HandleFunc(
-		tasks.TypeReminderEmail,       // task type
-		tasks.HandleReminderEmailTask, // handler function
-	)
+	// // Define a task handler for the reminder email task.
+	// mux.HandleFunc(
+	// 	tasks.TypeReminderEmail,       // task type
+	// 	tasks.HandleReminderEmailTask, // handler function
+	// )
 
-	// Define a task handler for the image processing task.
-	mux.HandleFunc(
-		tasks.TypeImageProcessing,       // task type
-		tasks.HandleImageProcessingTask, // handler function
-	)
-	// Define a task handler for the video processing task.
-	mux.HandleFunc(
-		tasks.TypeVideoProcessing,       // task type
-		tasks.HandleVideoProcessingTask, // handler function
-	)
+	// // Define a task handler for the image processing task.
+	// mux.HandleFunc(
+	// 	tasks.TypeImageProcessing,       // task type
+	// 	tasks.HandleImageProcessingTask, // handler function
+	// )
+	// // Define a task handler for the video processing task.
+	// mux.HandleFunc(
+	// 	tasks.TypeVideoProcessing,       // task type
+	// 	tasks.HandleVideoProcessingTask, // handler function
+	// )
 	// Run worker server.
 	if err := worker.Run(mux); err != nil {
 		log.Fatal(err)

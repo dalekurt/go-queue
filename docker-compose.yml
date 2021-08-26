@@ -3,6 +3,7 @@ services:
   asynqmon:
     image : hibiken/asynqmon
     container_name: asynqmon
+    command: "--redis-addr=redis-server:6379"
     ports:
       - 8080:8080
     restart: unless-stopped

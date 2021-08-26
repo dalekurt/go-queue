@@ -1,9 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"math/rand"
-	"time"
 
 	"github.com/dalekurt/go-queue/tasks"
 
@@ -24,24 +24,24 @@ func main() {
 	for {
 		// Generate a random user ID.
 		userID := rand.Intn(1000) + 10
-
+		fmt.Printf("UserID: '%v'", userID)
 		// Generate a random asset ID.
-		assetID := rand.Intn(1000) + 10
+		// assetID := rand.Intn(1000) + 10
 
 		// Set a delay duration to 2 minutes.
-		delay := 2 * time.Minute
+		// delay := 2 * time.Minute
 
 		// TODO: Generate a random string for the image task.
-		image := "helloworld.jpg"
+		// image := "helloworld.jpg"
 
 		// TODO: Generate a random string for the video task.
-		video := "helloworld.mp4"
+		// video := "helloworld.mp4"
 
 		// Define tasks.
 		task1 := tasks.NewNotifyEmailTask(userID)
-		task2 := tasks.NewReminderEmailTask(userID, time.Now().Add(delay))
-		task3 := tasks.NewImageProcessingTask(assetID, image)
-		task4 := tasks.NewVideoProcessingTask(assetID, video)
+		// task2 := tasks.NewReminderEmailTask(userID, time.Now().Add(delay))
+		// task3 := tasks.NewImageProcessingTask(assetID, image)
+		// task4 := tasks.NewVideoProcessingTask(assetID, video)
 
 		// Process the task immediately in critical queue.
 		if _, err := client.Enqueue(
@@ -52,28 +52,28 @@ func main() {
 		}
 
 		// Process the task 2 minutes later in low queue.
-		if _, err := client.Enqueue(
-			task2,                  // task payload
-			asynq.Queue("low"),     // set queue for task
-			asynq.ProcessIn(delay), // set time to process task
-		); err != nil {
-			log.Fatal(err)
-		}
+		// if _, err := client.Enqueue(
+		// 	task2,                  // task payload
+		// 	asynq.Queue("low"),     // set queue for task
+		// 	asynq.ProcessIn(delay), // set time to process task
+		// ); err != nil {
+		// 	log.Fatal(err)
+		// }
 
 		// Process the task immediately in default queue.
-		if _, err := client.Enqueue(
-			task3,                  // task payload
-			asynq.Queue("default"), // set queue for task
-		); err != nil {
-			log.Fatal(err)
-		}
+		// if _, err := client.Enqueue(
+		// 	task3,                  // task payload
+		// 	asynq.Queue("default"), // set queue for task
+		// ); err != nil {
+		// 	log.Fatal(err)
+		// }
 
 		// Process the task immediately in default queue.
-		if _, err := client.Enqueue(
-			task4,                   // task payload
-			asynq.Queue("critical"), // set queue for task
-		); err != nil {
-			log.Fatal(err)
-		}
+		// 	if _, err := client.Enqueue(
+		// 		task4,                   // task payload
+		// 		asynq.Queue("critical"), // set queue for task
+		// 	); err != nil {
+		// 		log.Fatal(err)
+		// 	}
 	}
 }
